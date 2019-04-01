@@ -3,63 +3,67 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-
-class Function implements Functions {
-    public void exit() {
-        System.out.println("ÄãµÄÏµÍ³ÒÑ¾­ÍË³ö!");
+/**ä½œè€…ï¼Œæ—¶é—´*/
+ 
+class Function implements Functions
+{
+    /**æç¤ºç³»ç»Ÿæ¨å‡º*/
+    public void exit() 
+    {
+        System.out.println("ä½ çš„ç³»ç»Ÿå·²ç»é€€å‡º!");
         System.exit(0);
     }
-
-    public void wordofnumber(ArrayList<Map.Entry<String, Integer>> list) {
-        Scanner sc1 = new Scanner(System.in);
-        System.out.println("¸÷µ¥´ÊµÄÊıÁ¿ÒÔ¼°Öù×´Í¼ÈçÏÂ(Ò»¸ö¨€´ú±íÃ¿¸öµ¥´Ê³öÏÖ400´Î,×¢:ÎÄÕÂÖĞ²»´æÔÚµÄµ¥´Ê²»»á³öÏÖ)");
-        System.out.println("ÇëÊäÈëÄãÒª²éÑ¯µÄµ¥´ÊÓÃ¶ººÅ¸ô¿ª");
-        String wordss = sc1.nextLine();
-        String words[] = wordss.split(",");
-        for (String word : words) {
-            for (Map.Entry<String, Integer> entry : list) {
+    /**æ˜¾ç¤ºæŸ¥è¯¢å•è¯è¯é¢‘å’ŒæŸ±çŠ¶å›¾*/
+    public void wordoFnumber(ArrayList<Map.Entry<String, Integer>> list) 
+    {
+        System.out.println("å„å•è¯çš„æ•°é‡ä»¥åŠæŸ±çŠ¶å›¾å¦‚ä¸‹(ä¸€ä¸ªâ–ˆä»£è¡¨æ¯ä¸ªå•è¯å‡ºç°400æ¬¡,æ³¨:æ–‡ç« ä¸­ä¸å­˜åœ¨çš„å•è¯ä¸ä¼šå‡ºç°)");
+        System.out.println("è¯·è¾“å…¥ä½ è¦æŸ¥è¯¢çš„å•è¯ç”¨é€—å·éš”å¼€");
+        String word= sc1.nextLine();
+        String words[] = word.split(",");
+        for (String word : words) 
+        {
+            for (Map.Entry<String, Integer> entry : list)
+            {
 
                 if (word.equals(entry.getKey())) {
-
-//							System.out.println(word + ": " + entry.getValue());
                     int number = entry.getValue();
                     System.out.print(entry.getKey()+"	numbers "+entry.getValue()+":  ");
                     for (int i = 0; i < number / 400; i++) {
-                        System.out.print("¨€");
+                        System.out.print("â–ˆ");
                     }
                     System.out.println();
                     System.out.println();
-                    // sc1.close();
                     break;
                 }
-                /*
-                 * else{ System.out.println("²»´æÔÚ"); break; }
-                 */
             }
         }
     }
-
-    public void beforeK(ArrayList<Map.Entry<String, Integer>> list) {
+    /**æ˜¾ç¤ºæŸ¥è¯¢å•è¯è¯é¢‘å’ŒæŸ±çŠ¶å›¾*/
+    public void beForeK(ArrayList<Map.Entry<String, Integer>> list)
+    {
         Scanner sc = new Scanner(System.in);
-        System.out.println("ÇëÊäÈëÄãÒª²éÇ°¼¸¸öµ¥´Ê(k):");
+        System.out.println("è¯·è¾“å…¥ä½ è¦æŸ¥å‰å‡ ä¸ªå•è¯(k):");
         int k = sc.nextInt();
 
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k; i++) 
+        {
             System.out.println(list.get(i));
         }
     }
-
-    public void write(ArrayList<Map.Entry<String, Integer>> list,String fileName) {
+     /**å•è¯è¯é¢‘å†™å…¥æ–‡ä»¶*/
+    public void write(ArrayList<Map.Entry<String, Integer>> list,String fileName) 
+    {
         int count = 0 ;
         FileWriter fw = null;
         try {
             fw = new FileWriter("result.txt");
         } catch (IOException e) {
-            System.out.println("ÎÂÜ°ÌáÊ¾:ÄãÒª´òÓ¡µÄÎÄ¼şÂ·¾¶ÒÑ¾­´æÔÚ");
+            System.out.println("æ¸©é¦¨æç¤º:ä½ è¦æ‰“å°çš„æ–‡ä»¶è·¯å¾„å·²ç»å­˜åœ¨");
         }
         BufferedWriter bw = new BufferedWriter(fw);
 
-        for (Map.Entry<String, Integer> entry : list) {
+        for (Map.Entry<String, Integer> entry : list) 
+        {
             try {
                 bw.write(entry.getKey() + ":" + entry.getValue() + "	");
             } catch (IOException e) {
@@ -73,7 +77,7 @@ class Function implements Functions {
             }
         }
         try {
-            bw.write("µ¥´ÊµÄ×ÜÊıÊÇ:" + count);
+            bw.write("å•è¯çš„æ€»æ•°æ˜¯:" + count);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,7 +86,7 @@ class Function implements Functions {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("³É¹¦Ğ´ÈëÎÄ¼ş,Çë°´ÕÕ´æ´¢µÄÎÄ¼şÂ·¾¶²é¿´!!!" + "ÎÄ¼şÂ·¾¶ÊÇ:" + fileName);
+        System.out.println("æˆåŠŸå†™å…¥æ–‡ä»¶,è¯·æŒ‰ç…§å­˜å‚¨çš„æ–‡ä»¶è·¯å¾„æŸ¥çœ‹!!!" + "æ–‡ä»¶è·¯å¾„æ˜¯:" + fileName);
         System.exit(0);
     }
 }
