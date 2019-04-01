@@ -14,7 +14,7 @@ class Function implements Functions
         System.exit(0);
     }
     /**显示查询单词词频和柱状图*/
-    public void wordoFnumber(ArrayList<Map.Entry<String, Integer>> list) 
+    public void wordOfNumber(ArrayList<Map.Entry<String, Integer>> list) 
     {
         System.out.println("各单词的数量以及柱状图如下(一个█代表每个单词出现400次,注:文章中不存在的单词不会出现)");
         System.out.println("请输入你要查询的单词用逗号隔开");
