@@ -1,77 +1,89 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
-
-public class Driver {
-    public static void main(String[] args) throws Exception {
+/**
+æ­¤å¤„æ³¨æ˜æ—¶é—´ï¼Œä½œè€…
+*/
+public class Driver 
+{
+    public static void main(String[] args) throws Exception
+    {
         System.out.println("================================================================================================");
-        System.out.println("0.ÍË³ö");
-        System.out.println("1.Ö¸¶¨µ¥´Ê´ÊÆµÍ³¼Æ¹¦ÄÜ");
-        System.out.println("2.ÏÔÊ¾Ç°k¸öµ¥´ÊµÄ´ÊÆµ¼°µ¥´Ê");
-        System.out.println("3.Í³¼Æ¸ÃÎÄ±¾ËùÓĞµ¥´ÊÊıÁ¿¼°´ÊÆµÊı,½«µ¥´ÊÊıºÍ´ÊÆµÊı°´×ÖµäË³ĞòĞ´Èëµ½result.txtÎÄ¼şÖĞ");
-        System.out.println("ÇëÑ¡Ôñ¹¦ÄÜÑ¡Ïî,Ñ¡Ôñ¶ÔÓ¦µÄÊı×ÖÑ¡Ïî¼´¿É½øÈë¶ÔÓ¦µÄ¹¦ÄÜ");
+        System.out.println("0.é€€å‡º");
+        System.out.println("1.æŒ‡å®šå•è¯è¯é¢‘ç»Ÿè®¡åŠŸèƒ½");
+        System.out.println("2.æ˜¾ç¤ºå‰kä¸ªå•è¯çš„è¯é¢‘åŠå•è¯");
+        System.out.println("3.ç»Ÿè®¡è¯¥æ–‡æœ¬æ‰€æœ‰å•è¯æ•°é‡åŠè¯é¢‘æ•°,å°†å•è¯æ•°å’Œè¯é¢‘æ•°æŒ‰å­—å…¸é¡ºåºå†™å…¥åˆ°result.txtæ–‡ä»¶ä¸­");
+        System.out.println("è¯·é€‰æ‹©åŠŸèƒ½é€‰é¡¹,é€‰æ‹©å¯¹åº”çš„æ•°å­—é€‰é¡¹å³å¯è¿›å…¥å¯¹åº”çš„åŠŸèƒ½");
         System.out.println("================================================================================================");
-        String fileName = "src/HarryPotter.txt";	//ÊäÈëÎÄ±¾Â·¾¶
+        //è¾“å…¥æ–‡æœ¬è·¯å¾„
+        String fileName = "src/HarryPotter.txt";	 
         FileReader fr = new FileReader(fileName);
         BufferedReader br = new BufferedReader(fr);
-        ArrayList<String> lists = new ArrayList<String>(); // ÓÃÀ´´æ´¢¹ıÂËºóµÄµ¥´ÊÁĞ±í
+        // ç”¨æ¥å­˜å‚¨è¿‡æ»¤åçš„å•è¯åˆ—è¡¨
+        ArrayList<String> lists = new ArrayList<String>();  
         String line = null;
         int count = 0;
-        while ((line = br.readLine()) != null) {
-            String LineOfwords[] = line.split("[^a-zA-Z]"); // ¹ıÂË²»º¬×ÖÄ¸µÄ
-            for (String word : LineOfwords) {
-                if (word.length() != 0) { // È¥³ı³¤¶ÈÎª0 µÄĞĞ
+        while ((line = br.readLine()) != null) 
+        {
+             // è¿‡æ»¤ä¸å«å­—æ¯çš„
+            String LineOfwords[] = line.split("[^a-zA-Z]"); 
+            for (String word : LineOfwords)
+            {
+                if (word.length() != 0)
+                { // å»é™¤é•¿åº¦ä¸º0 çš„è¡Œ
                     lists.add(word);
                 }
             }
         }
         br.close();
-        TreeMap<String, Integer> wordCount = new TreeMap<String, Integer>(); // ½«µ¥´ÊÓë¶ÔÓ¦µÄµ¥´Ê¸öÊı´æÈëTreeMap¼¯ºÏ,ÒòÎªTreeMap¼¯ºÏÊÇÒÔkey(µ¥´Ê)½øĞĞÅÅĞò(×ÖµäË³Ğò),ËùÒÔĞèÒª½øĞĞ¶ş´ÎÅÅĞò
-        for (String word : lists) {
-            if (wordCount.get(word) != null) {
+        // å°†å•è¯ä¸å¯¹åº”çš„å•è¯ä¸ªæ•°å­˜å…¥TreeMapé›†åˆ,å› ä¸ºTreeMapé›†åˆæ˜¯ä»¥key(å•è¯)è¿›è¡Œæ’åº(å­—å…¸é¡ºåº),æ‰€ä»¥éœ€è¦è¿›è¡ŒäºŒæ¬¡æ’åº
+        TreeMap<String, Integer> wordCount = new TreeMap<String, Integer>();  
+        for (String word : lists) 
+        {
+            if (wordCount.get(word) != null) 
+            {
                 wordCount.put(word, wordCount.get(word) + 1);
                 count++;
-            } else {
+            } else 
+            {
                 wordCount.put(word, 1);
                 count++;
             }
         }
 
-        // ÅÅĞò
+        /** æ’åº*/
         ArrayList<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(wordCount.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o2.getValue() - o1.getValue(); // ½µĞòÅÅ
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() 
+        {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) 
+            {
+                // é™åºæ’
+                return o2.getValue() - o1.getValue();  
             }
         });
-        System.out.println("ÇëÊäÈëÊı×Ö0-3ÊµÏÖ²»Í¬µÄ¹¦ÄÜ:");
+        System.out.println("è¯·è¾“å…¥æ•°å­—0-3å®ç°ä¸åŒçš„åŠŸèƒ½:");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         Function function = new Function();
-    while (true){
-        switch (num){
-            case 0:
-                function.exit();
-                break;
-            case 1:
-                function.wordofnumber(list);
-                break;
-            case 2:
-                function.beforeK(list);
-                break;
-            case 3:
-                function.write(list,fileName);
-                break;
+        while (true)
+        {
+            switch (num)
+            {
+                case 0:
+                    function.exit();
+                    break;
+                case 1:
+                    function.wordOfNumber(list);
+                    break;
+                case 2:
+                    function.beForeK(list);
+                    break;
+                case 3:
+                    function.write(list,fileName);
+                    break;
 
+            }
         }
-    }
-
-
-
-
-
     }
 }
