@@ -74,10 +74,10 @@ public class Driver
                     function.exit();
                     break;
                 case 1:
-                    function.wordofnumber(list);
+                    function.wordOfNumber(list);
                     break;
                 case 2:
-                    function.beforeK(list);
+                    function.beForeK(list);
                     break;
                 case 3:
                     function.write(list,fileName);
